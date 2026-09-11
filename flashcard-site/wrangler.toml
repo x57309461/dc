@@ -1,4 +1,4 @@
-﻿name = "dc"  # 必须与你在 Cloudflare 仪表板中的 Worker 名称完全一致
+﻿name = "dc-55r"  # 必须与你在 Cloudflare 仪表板中的 Worker 名称完全一致
 main = "app.js" # 你的 Worker 代码文件名，请根据实际情况修改
 compatibility_date = "2026-09-11" # 使用一个近期的日期即可
 
