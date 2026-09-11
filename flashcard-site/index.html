@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -7,23 +7,94 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="card-container">
-        <div class="card" id="flashcard">
-            <div class="card-face card-front">
-                <h2 id="word">Word</h2>
-                <p id="phonetic">/fəˈnetɪk/</p>
+    <!-- 登录 / 注册页 -->
+    <div id="authPage" class="auth-page">
+        <div class="auth-box">
+            <h1>翻卡片记单词</h1>
+            <div class="auth-tabs">
+                <button id="loginTab" class="active">登录</button>
+                <button id="registerTab">注册</button>
             </div>
-            <div class="card-face card-back">
-                <p id="definition">Definition goes here.</p>
-                <p id="example">Example sentence.</p>
+            <input type="text" id="authUsername" placeholder="用户名" autocomplete="username">
+            <input type="password" id="authPassword" placeholder="密码" autocomplete="current-password">
+            <div id="authError" class="auth-error"></div>
+            <button id="authSubmitBtn" class="btn-primary">登录</button>
+        </div>
+    </div>
+
+    <!-- 主界面 -->
+    <div id="mainPage" class="main-page" style="display: none;">
+        <div class="user-bar">
+            <span id="welcome">你好</span>
+            <button id="logoutBtn" class="btn-small">退出</button>
+        </div>
+
+        <div class="level-bar">
+            <label for="levelSelect">选择词库：</label>
+            <select id="levelSelect">
+                <option value="primary">小学</option>
+                <option value="junior">初中</option>
+                <option value="senior">高中</option>
+            </select>
+            <span id="wordCount" class="word-count"></span>
+        </div>
+
+        <div class="card-container">
+            <div class="card" id="flashcard">
+                <div class="card-face card-front">
+                    <h2 id="word">Word</h2>
+                    <p id="phonetic">/fəˈnetɪk/</p>
+                </div>
+                <div class="card-face card-back">
+                    <p id="definition">Definition goes here.</p>
+                    <p id="example">Example sentence.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button id="prevBtn">上一个</button>
+            <button id="flipBtn">翻转卡片</button>
+            <button id="nextBtn">下一个</button>
+        </div>
+
+        <div class="import-bar">
+            <button id="showImportBtn">📥 批量导入单词</button>
+        </div>
+    </div>
+
+    <!-- 导入弹窗 -->
+    <div class="modal-overlay" id="importModal">
+        <div class="modal">
+            <h3>批量导入单词</h3>
+
+            <label class="import-level-label">
+                导入到词库：
+                <select id="importLevel">
+                    <option value="primary">小学</option>
+                    <option value="junior">初中</option>
+                    <option value="senior">高中</option>
+                </select>
+            </label>
+
+            <p class="import-hint">
+                <strong>CSV</strong>（每行一条，逗号分隔）：<br>
+                <code>word,phonetic,definition,example</code><br>
+                首行可以是表头，会自动跳过。<br>
+                <strong>JSON</strong>：<br>
+                <code>[{"word":"...","phonetic":"...","definition":"...","example":"..."}]</code>
+            </p>
+
+            <textarea id="importText" rows="10" placeholder="在此粘贴 CSV 或 JSON 内容"></textarea>
+            <div id="importResult" class="import-result"></div>
+
+            <div class="modal-actions">
+                <button id="cancelImportBtn" class="btn-secondary">取消</button>
+                <button id="submitImportBtn" class="btn-primary">开始导入</button>
             </div>
         </div>
     </div>
-    <div class="controls">
-        <button id="prevBtn">上一个</button>
-        <button id="flipBtn">翻转卡片</button>
-        <button id="nextBtn">下一个</button>
-    </div>
+
     <script src="app.js"></script>
 </body>
 </html>
