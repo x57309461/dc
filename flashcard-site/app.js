@@ -1,5 +1,5 @@
 // ===== 配置：替换成你的 Worker URL =====
-const API_BASE = 'https://word-cd1.你的子域.workers.dev';
+const API_BASE = 'dc-55r.pages.dev';
 
 const TOKEN_KEY = 'flashcard_token';
 let token = localStorage.getItem(TOKEN_KEY) || '';
